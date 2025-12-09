@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>coffee.co - Coffee Shop Reviews</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./styles/main.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">
+          <i class="bi bi-cup-hot-fill me-2"></i>coffee.co
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">Home</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-4">
+      <div class="row mb-4">
+        <div class="col">
+          <h1 class="display-5 fw-bold">
+            <i class="bi bi-cup-hot-fill me-2"></i>Coffee Shops
+          </h1>
+          <p class="text-muted">Discover and manage your favorite coffee spots</p>
+        </div>
+        <div class="col-auto d-flex align-items-center">
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addShopModal">
+            <i class="bi bi-plus-circle me-2"></i>Add Shop
+          </button>
+        </div>
+      </div>
+
+      <!-- Loading Spinner -->
+      <div id="loadingSpinner" class="text-center d-none">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+
+      <!-- Shops Table -->
+      <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle">
+              <thead>
+                <tr>
+                  <th scope="col">Shop Name</th>
+                  <th scope="col">Rating</th>
+                  <th scope="col">Date Entered</th>
+                  <th scope="col">Favorited</th>
+                  <th scope="col" class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="shopsTableBody">
+                <!-- Shops will be dynamically loaded here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="text-center py-5 d-none">
+        <i class="bi bi-cup-straw fs-1 text-muted"></i>
+        <h3 class="mt-3 text-muted">No coffee shops yet</h3>
+        <p class="text-muted">Add your first coffee shop to get started!</p>
+        <button class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#addShopModal">
+          <i class="bi bi-plus-circle me-2"></i>Add Shop
+        </button>
+      </div>
+    </div>
+
+    <!-- Add Shop Modal -->
+    <div class="modal fade" id="addShopModal" tabindex="-1" aria-labelledby="addShopModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addShopModalLabel">Add New Coffee Shop</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="addShopForm">
+              <div class="mb-3">
+                <label for="shopName" class="form-label">Shop Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="shopName" required>
+              </div>
+              <div class="mb-3">
+                <label for="shopRating" class="form-label">Rating (0.0 - 5.0)</label>
+                <input type="number" class="form-control" id="shopRating" min="0" max="5" step="0.1" value="0.0">
+                <div class="form-text">Enter a rating between 0.0 and 5.0</div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary" id="submitShopBtn">Add Shop</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS bundle -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Custom JS -->
+    <script src="./scripts/api.js"></script>
+    <script src="./scripts/index.js"></script>
+  </body>
+</html>
